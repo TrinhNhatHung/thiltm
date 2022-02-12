@@ -11,26 +11,15 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import thiltm.model.danhsach;
 
-
-
-/**
- * Servlet implementation class chiaphong
- */
 @WebServlet("/chiaphong")
 public class chiaphong extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public chiaphong() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		danhsach ds = new danhsach();
 		ds.setGv((XSSFWorkbook) request.getSession().getAttribute("gv"));
@@ -41,9 +30,7 @@ public class chiaphong extends HttpServlet {
 		response.sendRedirect("result.jsp");	
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

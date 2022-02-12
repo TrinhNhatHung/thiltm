@@ -16,25 +16,16 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.servlet.ServletRequestContext;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-/**
- * Servlet implementation class xulifile
- */
 @WebServlet("/xulifile")
 public class xulifile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public xulifile() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
@@ -47,6 +38,7 @@ public class xulifile extends HttpServlet {
 						break;
 					} else {
 						XSSFWorkbook workbook = new XSSFWorkbook(bis);
+						System.out.println(item.getFieldName());
 						if (item.getFieldName().equals("gv"))
 							request.getSession().setAttribute("gv", workbook);
 						else
@@ -59,16 +51,16 @@ public class xulifile extends HttpServlet {
 		}
 		System.out.println(request.getSession().getAttribute("ca"));
 		if (request.getSession().getAttribute("gv") == null || request.getSession().getAttribute("pt") == null
-				|| request.getSession().getAttribute("ca").toString().isEmpty())
+				|| request.getSession().getAttribute("ca").toString().isEmpty()) {
 			response.sendRedirect("index.jsp");
-		else
+			System.out.println("index");
+		}
+		else {
 			response.sendRedirect("chiaphong");
+			System.out.println("chiaphong");
+		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
